@@ -1,7 +1,14 @@
 // 회원가입 컴포넌트
 
+import AuthForm from '../components/auth/AuthForm';
+import AuthTemplate from '../components/auth/AuthTemplate';
+
 const RegisterPage = () => {
-  return <div>회원가입 컴포넌트</div>;
+  return (
+    <AuthTemplate>
+      <AuthForm />
+    </AuthTemplate>
+  );
 };
 
 export default RegisterPage;
