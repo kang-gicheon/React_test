@@ -44,6 +44,7 @@ const AuthTemplate = ({ children }) => {
     <AuthTemplateBlock>
       <WhiteBox>
         <div className="logo-area">
+          {/* 나중에 프로젝트 이름 수정하기 */}
           <Link to="/">REACTERS</Link>
         </div>
         {children}
