@@ -16,6 +16,7 @@ const StyledButton = styled.button`
     background: ${palette.gray[6]};
   }
 
+  // 버튼의 크기 width 수정
   ${(props) =>
     props.fullWidth &&
     css`
@@ -25,6 +26,7 @@ const StyledButton = styled.button`
       font-size: 1.125rem;
     `}
 
+  // 버튼의 색 지정 - 밝은 파란색으로 지정
   ${(props) =>
     props.cyan &&
     css`

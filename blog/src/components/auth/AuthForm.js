@@ -48,17 +48,52 @@ const Footer = styled.div`
   }
 `;
 
-const AuthForm = () => {
+// 버튼 영역 상단 여백
+const ButtonWithMarginTop = styled(Button)`
+  margin-top: 1rem;
+`;
+
+// type props에 따라 다른 내용을 보여줄 함수
+const textMap = {
+  login: '로그인',
+  register: '회원가입',
+};
+
+const AuthForm = ({ type }) => {
+  const text = textMap[type];
   return (
     <AuthFormBlock>
-      <h3>로그인</h3>
+      <h3>{text}</h3>
       <form>
-        <StyledInput />
-        <StyledInput />
-        <Button>로그인</Button>
+        <StyledInput
+          autoComplete="username"
+          name="username"
+          placeholder="아이디"
+        />
+        <StyledInput
+          autoComplete="new-password"
+          name="password"
+          placeholder="비밀번호"
+          type="password"
+        />
+        {type === 'register' && (
+          <StyledInput
+            autoComplete="new-password"
+            name="passwordConfirm"
+            placeholder="비밀번호 확인"
+            type="password"
+          />
+        )}
+        <ButtonWithMarginTop cyan fullWidth style={{ marginTop: '1rem' }}>
+          {text}
+        </ButtonWithMarginTop>
       </form>
       <Footer>
-        <Link to="/register">회원가입</Link>
+        {type === 'login' ? (
+          <Link to="/register">회원가입</Link>
+        ) : (
+          <Link to="/login">로그인</Link>
+        )}
       </Footer>
     </AuthFormBlock>
   );
