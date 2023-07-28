@@ -1,6 +1,6 @@
 // redux-saga를 통한 리덕스 모듈(API 요청을 위함)
 
-import { createAction, handleAction } from 'redux-actions';
+import { createAction, handleActions } from 'redux-actions';
 
 const START_LOADING = 'loading/START_LOADING';
 const FINISH_LOADING = 'loading/FINISH_LOADING';
@@ -20,7 +20,7 @@ export const finishLoading = createAction(
 
 const initialState = {};
 
-const loading = handleAction(
+const loading = handleActions(
   {
     [START_LOADING]: (state, action) => ({
       ...state,
