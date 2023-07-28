@@ -1,7 +1,9 @@
-import { css, styled } from 'styled-components';
+import React from 'react';
+import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 import palette from '../../lib/styles/palette';
 
-const StyledButton = styled.button`
+const buttonStyle = css`
   border: none;
   border-radius: 4px;
   font-size: 1rem;
@@ -16,7 +18,6 @@ const StyledButton = styled.button`
     background: ${palette.gray[6]};
   }
 
-  // 버튼의 크기 width 수정
   ${(props) =>
     props.fullWidth &&
     css`
@@ -26,7 +27,6 @@ const StyledButton = styled.button`
       font-size: 1.125rem;
     `}
 
-  // 버튼의 색 지정 - 밝은 파란색으로 지정
   ${(props) =>
     props.cyan &&
     css`
@@ -37,6 +37,20 @@ const StyledButton = styled.button`
     `}
 `;
 
-const Button = (props) => <StyledButton {...props} />;
+const StyledButton = styled.button`
+  ${buttonStyle}
+`;
+
+const StyledLink = styled(Link)`
+  ${buttonStyle}
+`;
+
+const Button = (props) => {
+  return props.to ? (
+    <StyledLink {...props} cyan={props.cyan ? 1 : 0} />
+  ) : (
+    <StyledButton {...props} />
+  );
+};
 
 export default Button;
