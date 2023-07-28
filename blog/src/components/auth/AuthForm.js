@@ -1,12 +1,11 @@
-import styled from 'styled-components'; // 스타일링시 사용할 라이브러리
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import palette from '../../lib/styles/palette';
 import Button from '../common/Button';
-import { Link } from 'react-router-dom';
 
 /**
- * 회원가입 또는 로그인 폼을 보여주는 컴포넌트
- * 최상위 컴포넌트 선언시 이름 뒤 Block으로 지정
- * Block이 아닐시 wrapper / styled 작명 예정
+ * 회원가입 또는 로그인 폼을 보여줍니다.
  */
 
 const AuthFormBlock = styled.div`
@@ -17,7 +16,9 @@ const AuthFormBlock = styled.div`
   }
 `;
 
-// 스타일링 된 input 영역
+/**
+ * 스타일링된 input
+ */
 const StyledInput = styled.input`
   font-size: 1rem;
   border: none;
@@ -34,8 +35,9 @@ const StyledInput = styled.input`
   }
 `;
 
-// 폼 하단에 로그인 혹은 회원가입 링크를 보여줌
-
+/**
+ * 폼 하단에 로그인 혹은 회원가입 링크를 보여줌
+ */
 const Footer = styled.div`
   margin-top: 2rem;
   text-align: right;
@@ -48,18 +50,26 @@ const Footer = styled.div`
   }
 `;
 
-// 버튼 영역 상단 여백
 const ButtonWithMarginTop = styled(Button)`
   margin-top: 1rem;
 `;
 
-// type props에 따라 다른 내용을 보여줄 함수
 const textMap = {
   login: '로그인',
   register: '회원가입',
 };
 
-const AuthForm = ({ type, form, onChange, onSubmit }) => {
+/**
+ * 에러를 보여줍니다
+ */
+const ErrorMessage = styled.div`
+  color: red;
+  text-align: center;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+`;
+
+const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
   const text = textMap[type];
   return (
     <AuthFormBlock>
@@ -90,6 +100,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
             value={form.passwordConfirm}
           />
         )}
+        {error && <ErrorMessage>{error}</ErrorMessage>}
         <ButtonWithMarginTop cyan fullWidth style={{ marginTop: '1rem' }}>
           {text}
         </ButtonWithMarginTop>
