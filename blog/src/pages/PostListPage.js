@@ -5,7 +5,7 @@ import Button from '../components/common/Button';
 const PostListPage = () => {
   return (
     <div>
-      <Button>눌러라</Button>
+      <Button>버튼</Button>
     </div>
   );
 };
